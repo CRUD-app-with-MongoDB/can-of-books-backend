@@ -7,6 +7,9 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 
+
+const MONGO_DB_URL = DB_URL;
+
 const PORT = process.env.PORT || 3001;
 
 app.get('/test', (request, response) => {
