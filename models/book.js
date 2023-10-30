@@ -7,7 +7,7 @@ const {Schema} = mongoose;
 
 let bookSchema = new Schema({
   title: {type: String, required: true},
-  decription: {type: String, required: true},
+  description: {type: String, required: true},
   available: {type: Boolean, required: true},
 });
 
