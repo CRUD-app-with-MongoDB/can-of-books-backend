@@ -1,11 +1,45 @@
-# Start your own "Can of Books" App
+# PROJECT NAME
 
-This repository has starter code to begin work on creating your own online bookshelf.
+Project description goes here.
 
-## What can books do?
+## Getting Started
 
-Books are life-changing. They have the power to enlighten, educate, entertain, heal, and help us grow. Build out this code base to create an web app to track what books have impacted you, and what's recommended to read next.
+### Requirements
 
-## Use this template
+For development, you will only need [Node](http://nodejs.org/) installed in your environment.
+Please use the appropriate [Editorconfig](http://editorconfig.org/) plugin for your Editor (not mandatory).
 
-Clone this repo to your own account with the green "Use this template" button. Then, add any collaborators. Now you are ready to start adding features! Deploy your site to let the world know which books have had the greatest impact on you, and what's recommended. Enjoy!
+### Install
+
+    git clone https://github.com/ORG/PROJECT.git
+    cd PROJECT
+    npm install
+
+### Configure app
+
+Any environment configuration steps.
+
+### Start & watch
+
+    npm run dev
+    npm start
+
+### Simple build for production
+
+    npm run build
+
+## Architecture
+
+Describe how the project is structured.
+
+### Languages & tools
+
+Explain what tools are used.
+
+## Change Log
+
+List versioned releases.
+
+## Collaborators
+
+List collaborators here.
