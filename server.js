@@ -10,12 +10,10 @@ app.use(cors());
 const PORT = process.env.PORT || 3001;
 const mongoose = require('mongoose');
 
+app.use(express.json());
 
 mongoose.connect(process.env.DB_URL);
 
-app.get('/', (request, response) => {
-  response.status(200).send('Hello from the server');
-});
 
 const Book = require('./models/book');
 
@@ -25,6 +23,43 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   console.log('Mongoose is connected');
 });
+
+app.get('/', (request, res) => res.status(200).send('Server...'));
+app.get('/books', getBooks);
+app.post('/books', postBooks);
+app.delete('/books/:id', deleteBooks);
+
+
+
+
+async function postBooks(req,res,next){
+  console.log(req,'post book working');
+  try {
+    let createBook = await Book.create(req.body);
+    res.status(200).send(createBook);
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+async function deleteBooks(req,res,next){
+  try {
+    let id = req.params.id;
+    await Book.findByIdAndDelete(id);
+    res.status(200).send('Book found!');
+  } catch (error) {
+    next(error);
+  }
+
+}
+
+
+
+
+
+
+
 
 app.get('/books', getBooks);
 
