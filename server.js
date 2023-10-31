@@ -33,6 +33,7 @@ app.put('/books/:id', putBooks);
 async function putBooks(req, res, next) {
   try {
     let id = req.params.id;
+    console.log('id is:', id)
     let dataUpdate = req.body;
     let updatedBook = await Book.findByIdAndUpdate(id, dataUpdate, { new: true, overwrite: true });
     res.send(updatedBook);
