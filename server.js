@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5555;
 const mongoose = require('mongoose');
 
 app.use(express.json());
@@ -15,7 +15,7 @@ app.use(express.json());
 mongoose.connect(process.env.DB_URL);
 
 
-const Book = require('./models/book');
+const Book = require('./models/book.js');
 
 const db = mongoose.connection;
 
@@ -66,10 +66,7 @@ async function deleteBooks(req, res, next) {
   } catch (error) {
     next(error);
   }
-
 }
-
-
 
 
 
@@ -88,5 +85,9 @@ async function getBooks(req, res, next) {
     next(error);
   }
 }
+
+app.use((error, request, response) => {
+  response.status(500).send(error);
+});
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
