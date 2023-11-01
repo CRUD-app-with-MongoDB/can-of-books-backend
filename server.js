@@ -28,12 +28,27 @@ app.get('/', (request, res) => res.status(200).send('Server...'));
 app.get('/books', getBooks);
 app.post('/books', postBooks);
 app.delete('/books/:id', deleteBooks);
+app.put('/books/:id', putBooks);
+
+async function putBooks(req, res, next) {
+  try {
+    let id = req.params.id;
+    let dataUpdate = req.body;
+    let updatedBook = await Book.findByIdAndUpdate(id, dataUpdate, { new: true, overwrite: true });
+    res.send(updatedBook);
+
+  } catch (error) {
+    next(error);
+
+  }
+}
 
 
 
 
-async function postBooks(req,res,next){
-  console.log(req,'post book working');
+
+async function postBooks(req, res, next) {
+  console.log(req, 'post book working');
   try {
     let createBook = await Book.create(req.body);
     res.status(200).send(createBook);
@@ -43,7 +58,7 @@ async function postBooks(req,res,next){
 }
 
 
-async function deleteBooks(req,res,next){
+async function deleteBooks(req, res, next) {
   try {
     let id = req.params.id;
     await Book.findByIdAndDelete(id);
@@ -63,11 +78,11 @@ async function deleteBooks(req,res,next){
 
 app.get('/books', getBooks);
 
-async function getBooks(req, res, next){
+async function getBooks(req, res, next) {
   try {
     console.log('we made it to the get Books');
     let dataBaseResults = await Book.find();
-    console.log('DATA?',dataBaseResults);
+    console.log('DATA?', dataBaseResults);
     res.status(200).send(dataBaseResults);
   } catch (error) {
     next(error);
